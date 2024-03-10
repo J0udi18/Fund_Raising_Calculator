@@ -1,3 +1,4 @@
+# import libraries
 import pandas
 
 
@@ -55,8 +56,9 @@ def currency(x):
     return "${:.2f}".format(x)
 
 
-# Get expenses, returns list which has
-# the data frame and sub total
+# Gets expenses, returns lists which has
+# Gets expenses, returns lists which has
+# The data frame and sub_total
 def get_expenses(var_fixed):
     # Set up dictionaries and lists
 
@@ -80,9 +82,14 @@ def get_expenses(var_fixed):
         if item_name.lower() == "xxx":
             break
 
-        quantity = num_check("Quantity:",
-                             "The amount must be a whole number",
-                             int)
+        # if we have fixed costs, the quantity is one
+        if var_fixed == "variable":
+            quantity = num_check("Quantity:",
+                                 "The amount must be a whole number",
+                                 int)
+        else:
+            quantity = 1
+
         price = num_check("How much for a single item? $",
                           "The price must be a number < more than 0",
                           float)
@@ -98,6 +105,16 @@ def get_expenses(var_fixed):
     expense_frame['Cost'] = expense_frame['Quantity'] * expense_frame['Price']
 
     expense_frame = expense_frame.set_index('Item')
+
+    # Find sub_total
+    sub_total = expense_frame['Cost'].sum()
+
+    # Currency Formatting (use currency function)
+    add_dollars = ['Price', 'Cost']
+    for item in add_dollars:
+        expense_frame[item] = expense_frame[item].apply(currency)
+
+    return [expense_frame, sub_total]
 
 
 # Print expense frames
@@ -134,6 +151,8 @@ else:
     fixed_sub = 0
     fixed_frame = ""
 
+# Find Total Costs
+
 # Ask user for profit goal
 
 # Calculate recommended price
@@ -143,10 +162,9 @@ else:
 # **** Printing Area ****
 
 print()
-print("***** Fun Raising - {} *****".format(product_name))
+print("**** Fund Raising - {} ******".format(product_name))
 print()
 expense_print("Variable", variable_frame, variable_sub)
 
 if have_fixed == "yes":
-    expense_print("Fixed", fixed_frame, variable_sub)
-# Set up dictionaries and lists
+    expense_print("Fixed", fixed_frame, fixed_sub)

@@ -19,20 +19,16 @@ def num_check(question, error, num_type):
 
 # Checks that user has entered yes / no to a question
 def yes_no(question):
-    to_check = ["yes", "no"]
-
-    valid = False
-    while not valid:
+    while True:
 
         response = input(question).lower()
 
-        for var_item in to_check:
-            if response == var_item:
-                return response
-            elif response == var_item[0]:
-                return var_item
-
-        print("Please enter either yes or no...\n")
+        if response == "yes" or response == "y":
+            return response
+        elif response == "no" or response == "n":
+            return response
+        else:
+            print("Please enter either yes or no...\n")
 
 
 # checks that ticket name is not blank
@@ -56,7 +52,7 @@ def currency(x):
 
 
 # Get expenses, returns list which has
-# the data frame and sub total
+# the data frame and sub_total
 def get_expenses(var_fixed):
     # Set up dictionaries and lists
 
@@ -76,12 +72,12 @@ def get_expenses(var_fixed):
 
         print()
         # get name, quantity and item
-        item_name = not_blank("Item name: ", "The component name")
+        item_name = not_blank("Item name: ", "The component name can't be blank.")
         if item_name.lower() == "xxx":
             break
 
         quantity = num_check("Quantity:",
-                             "The amount must be a whole number",
+                             "The amount must be more than zero",
                              int)
         price = num_check("How much for a single item? $",
                           "The price must be a number < more than 0",
@@ -93,11 +89,20 @@ def get_expenses(var_fixed):
         price_list.append(price)
 
     expense_frame = pandas.DataFrame(variable_dict)
+    expense_frame = expense_frame.set_index('Item')
 
     # Calculate cost of each component
-    expense_frame['Cost'] = expense_frame['Quantity'] * expense_frame['Price']
+    expense_frame['Cost'] = expense_frame['Quantity'] * expense_frame
 
-    expense_frame = expense_frame.set_index('Item')
+    # Find sub_total
+    sub_total = expense_frame['Cost'].sum()
+
+    # Currency Formatting (use currency function)
+    add_dollars = ['Price', 'Cost']
+    for item in add_dollars:
+        expense_frame[item] = expense_frame[item].apply(currency())
+
+    return [expense_frame, sub_total]
 
 
 # Print expense frames
@@ -134,6 +139,8 @@ else:
     fixed_sub = 0
     fixed_frame = ""
 
+# Find Total Costs
+
 # Ask user for profit goal
 
 # Calculate recommended price
@@ -141,6 +148,17 @@ else:
 # Write data to file
 
 # **** Printing Area ****
+
+print("**** Variable costs ****")
+print(variable_frame)
+print()
+
+print("Variable costs: ${:.2f}".format(variable_sub))
+
+print("**** Fixed Costs *****")
+print(fixed_frame[['Cost']])
+print()
+print("Fixed costs: ${:.2f}",format(fixed_sub))
 
 print()
 print("***** Fun Raising - {} *****".format(product_name))

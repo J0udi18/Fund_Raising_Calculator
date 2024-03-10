@@ -66,7 +66,7 @@ def get_expenses(var_fixed):
         else:
             quantity = 1
 
-        price = num_check("How much for a single item? $",
+        price = num_check("How much? $",
                           "The price must be a number < more than 0",
                           float)
 
@@ -78,6 +78,12 @@ def get_expenses(var_fixed):
     expense_frame = pandas.DataFrame(variable_dict)
     expense_frame = expense_frame.set_index('Item')
 
+    # Currency Formatting (uses currency function)
+    add_dollars = ['Price', 'Cost']
+    for item in add_dollars:
+        variable_frame[item] = variable_frame[item].apply(currency)
+
+    return [expense_frame, sub_total]
 
 
 # *** Main routine strats here ***
@@ -153,13 +159,6 @@ variable_frame['cost'] = variable_frame['Quantity'] \
                          * variable_frame['Price']
 # Find sub total
 variable_sub = variable_frame['cost'].sum()
-
-# Currency Formatting (uses currency function)
-add_dollars = ['Price', 'Cost']
-for item in add_dollars:
-    variable_frame[item] = variable_frame[item].apply(currency)
-
-return [expese frame, sub total]
 
 # *** Printing Area ***
 
