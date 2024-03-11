@@ -20,7 +20,7 @@ def yes_no(question):
         print("Please enter either yes or no...\n")
 
 
-def profit_goal(total_costs)
+def profit_goal(total_costs):
     # Initialise variables and error message
     error = "Please enter a valid profit goal\n"
 
@@ -37,7 +37,7 @@ def profit_goal(total_costs)
             amount = response[1:]
 
         # check if last character is %
-        elif response [-1] == "%":
+        elif response[-1] == "%":
             profit_type = "%"
             # Get amount (everything before the %)
             amount = response[:-1]
@@ -85,4 +85,11 @@ def profit_goal(total_costs)
             return goal
 
 
+# Main routine goes here
+all_costs = 200
 
+# Loop for quick testing...
+for item in range(0, 6):
+    profit_target = profit_goal(all_costs)
+    print("Profit Target: ${:.2f}".format(profit_target))
+    print("Total Sales: ${:.2f}".format(all_costs + profit_target))
