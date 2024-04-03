@@ -235,7 +235,7 @@ sales_needed = num_check("Round to nearest...? $", "Can't be 0", int)
 selling_price = sales_needed / how_many
 print("Selling Price (unrounded): ${:.2f}".format(selling_price))
 
-recommended_price = round_up(selling_price, round_to)
+recommended_price = round_up(selling_price, round_up())
 
 # write data to file
 

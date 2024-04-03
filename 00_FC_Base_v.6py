@@ -21,7 +21,6 @@ def num_check(question, error, num_type):
 
 # Checks that user has entered yes / no to a question
 def yes_no(question):
-
     while True:
 
         response = input(question).lower()
@@ -239,6 +238,10 @@ print("Please enter your variable costs below...")
 variable_expenses = get_expenses("variable")
 variable_frame = variable_expenses[0]
 variable_sub = variable_expenses[1]
+variable_txt = pandas.DataFrame.to_string(variable_frame)
+
+variable_heading = "===== Variable Costs ======"
+
 
 print()
 have_fixed = yes_no("Do you have fixed costs (y / n)? ")
@@ -248,9 +251,14 @@ if have_fixed == "yes":
     fixed_expenses = get_expenses("fixed")
     fixed_frame = fixed_expenses[0]
     fixed_sub = fixed_expenses[1]
+    fixed_txt = pandas.DataFrame.to_string(fixed_frame)
+
+    fixed_heading = "===== Fixed Costs ======"
+
 else:
     fixed_sub = 0
-    fixed_frame = ""
+    fixed_txt = ""
+    fixed_heading = ""
 
 # work out total costs and profit target
 all_costs = variable_sub + fixed_sub
@@ -267,35 +275,14 @@ print("Selling Price (unrounded): ${:.2f}".format(selling_price))
 recommended_price = round_up(selling_price, round_to)
 print(f"\nRRP: ${recommended_price}\n")
 
-# write data to file
-variable_dict = {
-    "Item": ["Mugs", "Printing", "Packaging"] ,
-    "Quantity": [300, 300, 50],
-    "Price": [1, .5, .75]
-}
-
-fixed_dict = {
-    "Item": ["Rent", "Artwork", "Advertising"],
-    "Price": [25, 35, 10]
-}
-
-variable_frame = pandas.DataFrame(variable_dict)
-fixed_frame = pandas.DataFrame(fixed_dict)
-
-# Change frames to strings
-variable_txt = pandas.DataFrame.to_string(variable_frame)
-fixed_txt = pandas.DataFrame.to_string(fixed_frame)
-
-product_name = "Custom Mugs"
-profit_target = "$100.00"
-required_sales = "$200.00"
-recommended_price = "The recommended price is $5.00"
+profit_target_txt = f"Profit Target: ${profit_target}"
+sales_needed_txt = f"Required Sales: ${sales_needed}"
+recommended_price_txt = f"Recommended Price: ${recommended_price}"
 
 # List holding stuff to print / write to file
 to_write = [product_name, variable_txt, fixed_txt,
-            profit_target, required_sales,
-            recommended_price]
-
+            profit_target_txt, sales_needed_txt,
+            recommended_price_txt]
 
 # Write to file
 # Create file to hold data (add .txt extension)
@@ -317,24 +304,24 @@ for item in to_write:
 
 # **** Printing Area ****
 
-print()
-print("**** Fund Raising - {} ******".format(product_name))
-print()
-expense_print("Variable", variable_frame, variable_sub)
-
-if have_fixed == "yes":
-    expense_print("Fixed", fixed_frame[['Cost']], fixed_sub)
-
-print()
-print("**** Total costs: ${:.2f} ****".format(all_costs))
-print()
-
-print()
-print("**** Profit & Sales Targets *****")
-print("Profit Target: ${:.2f}".format(profit_target))
-print("Total Sales: ${:.2f}".format(all_costs + profit_target))
-
-print()
-print("****** Pricing ******")
-print("Minimum Price: ${:.2f}".format(selling_price))
-print("Recommended Price: ${:.2f}".format(recommended_price))
+# print()
+# print("**** Fund Raising - {} ******".format(product_name))
+# print()
+# expense_print("Variable", variable_frame, variable_sub)
+#
+# if have_fixed == "yes":
+#     expense_print("Fixed", fixed_frame[['Cost']], fixed_sub)
+#
+# print()
+# print("**** Total costs: ${:.2f} ****".format(all_costs))
+# print()
+#
+# print()
+# print("**** Profit & Sales Targets *****")
+# print("Profit Target: ${:.2f}".format(profit_target))
+# print("Total Sales: ${:.2f}".format(all_costs + profit_target))
+#
+# print()
+# print("****** Pricing ******")
+# print("Minimum Price: ${:.2f}".format(selling_price))
+# print("Recommended Price: ${:.2f}".format(recommended_price))
