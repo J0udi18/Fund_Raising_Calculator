@@ -21,9 +21,10 @@ variable_txt = pandas.DataFrame.to_string(variable_frame)
 fixed_txt = pandas.DataFrame.to_string(fixed_frame)
 
 product_name = "Custom Mugs"
-profit_target = "$100.00"
-required_sales = "$200.00"
-recommended_price = "The recommended price is $5.00"
+profit_target = "Profit Target: $100.00"
+required_sales = "Total Sales: $200.00"
+Minimum_price = "Minimum price: $2.88"
+recommended_price = "The recommended price: $5.00"
 
 # List holding stuff to print / write to file
 to_write = [product_name, variable_txt, fixed_txt,

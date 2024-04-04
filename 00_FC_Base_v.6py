@@ -113,16 +113,6 @@ def get_expenses(var_fixed):
     return [expense_frame, sub_total]
 
 
-# Print expense frames
-def expense_print(heading, frame, subtotal):
-    print()
-    print("**** {} Costs ****".format(heading))
-    print(frame)
-    print()
-    print("{} Costs: ${:.2f}".format(heading, subtotal))
-    return ""
-
-
 def profit_goal(total_costs):
     # Initialise variables and error message
     error = "Please enter a valid profit goal\n"
@@ -218,10 +208,10 @@ def instructions():
 #  ***** Main Routines starts here *****
 print("***** Welcome to the Fund Raising Calculator *****")
 print()
-played_before = yes_no("Have you used the program before? ")
-if played_before == "no":
+used_before = yes_no("Have you used the program before? ")
+if used_before == "no":
     instructions()
-if played_before == "yes":
+if used_before == "yes":
     print("**** Program launched! ****")
 
 # Get product name
@@ -268,6 +258,7 @@ profit_target = profit_goal(all_costs)
 sales_needed = all_costs + profit_target
 round_to = num_check("Round to nearest...? $", "Can't be 0", int)
 
+pricing = "___----- Pricing -----___"
 # Calculate recommended price
 selling_price = sales_needed / how_many
 print("Selling Price (unrounded): ${:.2f}".format(selling_price))
@@ -302,26 +293,3 @@ for item in to_write:
     print(item)
     print()
 
-# **** Printing Area ****
-
-# print()
-# print("**** Fund Raising - {} ******".format(product_name))
-# print()
-# expense_print("Variable", variable_frame, variable_sub)
-#
-# if have_fixed == "yes":
-#     expense_print("Fixed", fixed_frame[['Cost']], fixed_sub)
-#
-# print()
-# print("**** Total costs: ${:.2f} ****".format(all_costs))
-# print()
-#
-# print()
-# print("**** Profit & Sales Targets *****")
-# print("Profit Target: ${:.2f}".format(profit_target))
-# print("Total Sales: ${:.2f}".format(all_costs + profit_target))
-#
-# print()
-# print("****** Pricing ******")
-# print("Minimum Price: ${:.2f}".format(selling_price))
-# print("Recommended Price: ${:.2f}".format(recommended_price))
