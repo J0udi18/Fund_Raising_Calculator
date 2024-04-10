@@ -268,10 +268,9 @@ print(f"\nRRP: ${recommended_price}\n")
 
 heading = f"****** {product_name} ******"
 variable_heading = f"=== Variable Costs ===="
-variable_sub_txt = f"Variable Costs Subtotal: {variable_sub}"
-fixed_txt_variable = f"=== Fixed Costs ===="
-variable_profit_target_txt = f"==== Profit & Selling Advice ===="
-
+variable_sub_txt = f"Variable Costs Subtotal: ${variable_sub}"
+fixed_heading_txt = f"=== Fixed Costs ===="
+profit_target_heading = f"==== Profit & Selling Advice ===="
 
 profit_target_txt = f"Profit Target: ${profit_target}"
 sales_needed_txt = f"Required Sales: ${sales_needed}"
@@ -279,7 +278,7 @@ recommended_price_txt = f"Recommended Price: ${recommended_price}"
 
 # List holding stuff to print / write to file
 to_write = [heading, variable_heading, variable_txt, variable_sub_txt,
-            fixed_txt_variable, variable_profit_target_txt, sales_needed_txt,
+            fixed_heading_txt, fixed_txt, profit_target_heading, profit_target_txt, sales_needed_txt,
             recommended_price_txt]
 
 # Write to file
