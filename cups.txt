@@ -1,0 +1,27 @@
+****** cups ******
+
+=== Variable Costs ====
+
+      Quantity   Price      Cost
+Item                            
+cups       233  $21.00  $4893.00
+cup         23   $2.00    $46.00
+
+Variable Costs Subtotal: $4939.0
+
+=== Fixed Costs ====
+
+Empty DataFrame
+Columns: [Quantity, Price, Cost]
+Index: []
+
+==== Profit & Selling Advice ====
+
+Fixed Costs Subtotal: $0.0
+
+Profit Target: $3210.35
+
+Required Sales: $8150
+
+Recommended Price: $18
+

@@ -180,7 +180,8 @@ def profit_goal(total_costs):
 
 # rounding function
 def round_up(amount, var_round_to):
-    return int(math.ceil(amount / var_round_to)) * var_round_to
+    rounded_amount = math.ceil(amount / var_round_to) * var_round_to
+    return round(rounded_amount, 2)
 
 
 # displays instructions, returns 'None'
@@ -246,6 +247,7 @@ if have_fixed == "yes":
 
 else:
     fixed_sub = 0
+    fixed_frame = ""
     fixed_txt = ""
     fixed_heading = ""
 
@@ -268,17 +270,19 @@ print(f"\nRRP: ${recommended_price}\n")
 
 heading = f"****** {product_name} ******"
 variable_heading = f"=== Variable Costs ===="
-variable_sub_txt = f"Variable Costs Subtotal: ${variable_sub}"
-fixed_heading_txt = f"=== Fixed Costs ===="
+variable_sub_txt = f"Variable Costs Subtotal: ${variable_sub:.2f}"
+
 profit_target_heading = f"==== Profit & Selling Advice ===="
 
-profit_target_txt = f"Profit Target: ${profit_target}"
-sales_needed_txt = f"Required Sales: ${sales_needed}"
-recommended_price_txt = f"Recommended Price: ${recommended_price}"
+fixed_cost_subtotal_txt = f"Fixed Costs Subtotal: ${fixed_sub:.2f}"
+profit_target_txt = f"Profit Target: ${profit_target:.2f}"
+sales_needed_txt = f"Required Sales: ${sales_needed:.2f}"
+recommended_price_txt = f"Recommended Price: ${recommended_price:.2f}"
 
 # List holding stuff to print / write to file
 to_write = [heading, variable_heading, variable_txt, variable_sub_txt,
-            fixed_heading_txt, fixed_txt, profit_target_heading, profit_target_txt, sales_needed_txt,
+            fixed_heading, fixed_txt, profit_target_heading, fixed_cost_subtotal_txt,
+            profit_target_txt, sales_needed_txt,
             recommended_price_txt]
 
 # Write to file
@@ -290,27 +294,6 @@ with open(file_name, "w+") as text_file:
         text_file.write(item)
         text_file.write("\n\n")
 
-    # # Write product name
-    # text_file.write("/n **** Product Name: {} *****\n\n".format(product_name))
-    #
-    # # Write variable costs
-
-    # text_file.write("{}\n".format(variable_txt))
-    # text_file.write("/a Variable Costs Subtotal: {}\n\n".format(currency(variable_sub)))
-    #
-    # if have_fixed == "yes":
-    #     # Write fixed costs
-    #     text_file.write("/n /n === Fixed Costs ====\n\n")
-    #     text_file.write("{}\n".format(fixed_txt))
-    #     text_file.write("/n /n Fixed Costs Subtotal: {}\n\n".format(currency(fixed_sub)))
-    #
-    # # Write profit target and sales needed
-    # text_file.write("/n/n ==== Profit & Selling Advice ====\n\n")
-    # text_file.write("Profit Target: ${:.2f}".format(profit_target))
-    # text_file.write("Required Sales: ${:.2f}\n\n".format(sales_needed))
-    #
-    # # Write recommended price
-    # text_file.write("/n ==== Recommended Price: ${:.2f} ====\n".format(recommended_price))
 
 # Print Stuff
 for item in to_write:

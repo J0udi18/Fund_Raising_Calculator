@@ -1,0 +1,24 @@
+****** Kittens ******
+
+=== Variable Costs ====
+
+        Quantity  Price    Cost
+Item                           
+kitten        10  $1.00  $10.00
+food          10  $2.00  $20.00
+
+Variable Costs Subtotal: $30.0
+
+=== Fixed Costs ====
+
+
+
+==== Profit & Selling Advice ====
+
+Fixed Costs Subtotal: $0.00     <add to 2dp, remove space>
+Profit Target: $200.0
+
+Required Sales: $230
+
+Recommended Price: $24
+

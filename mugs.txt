@@ -1,0 +1,27 @@
+****** mugs ******
+
+=== Variable Costs ====
+
+          Quantity  Price     Cost
+Item                              
+mugs           100  $1.00  $100.00
+printing       100  $0.50   $50.00
+
+Variable Costs Subtotal: $150.00        <add $ and 2dp>
+
+=== Fixed Costs ====
+
+      Quantity    Price     Cost
+Item                            
+rent         1  $200.00  $200.00
+
+Fixed Costs Subtotal: $200.000         <add fixed costs sub total>
+
+==== Profit & Selling Advice ====
+
+Profit Target: $500.00              <2dp, remove extra \n>
+
+Required Sales: $850.0              <2dp>
+
+Recommended Price: $10              <2dp>
+
